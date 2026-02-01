@@ -1,0 +1,187 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  "diagnostics": {
+    "include_warnings": true,
+    "inline": {
+      "enabled": true,
+      "padding": 4,
+      "min_column": 0
+    }
+  },
+  "file_scan_exclusions": [
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/.repo",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings"
+  ],
+  "agent_servers": {
+    "claude": {
+      "default_mode": "acceptEdits"
+    }
+  },
+  "languages": {
+    "JSON": {
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "JSONC": {
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "TSX": {
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ],
+      "language_servers": ["oxlint", "vtsls", "tailwindcss-language-server", "!eslint", "oxfmt"]
+    },
+    "TypeScript": {
+      "language_servers": [
+        // "tsgo",
+        "vtsls",
+        "!eslint",
+        "oxlint",
+        "oxfmt"
+      ],
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "Go": {
+      "show_edit_predictions": true
+    },
+    "HTML": {
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    }
+  },
+  "file_types": {
+    "Dockerfile": ["dockerfile.*, Dockerfile.*"]
+  },
+  "agent": {
+    "default_profile": "ask",
+    "default_model": {
+      "provider": "openrouter",
+      "model": "anthropic/claude-opus-4.5"
+    },
+    "inline_assistant_model": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5-latest"
+    },
+    "dock": "left",
+    "always_allow_tool_actions": true
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "project_panel": {
+    "hide_hidden": false,
+    "hide_gitignore": false,
+    "dock": "right"
+  },
+  "features": {
+    "edit_prediction_provider": "supermaven"
+  },
+  "base_keymap": "VSCode",
+  // Theme customization
+  "theme": "Catppuccin Mocha",
+  // Fonts
+  "buffer_font_size": 12,
+  "buffer_font_family": "MonoLisa",
+  "ui_font_family": "MonoLisa",
+  // Editor settings
+  "autosave": "on_focus_change",
+  "format_on_save": "on",
+  "show_completions_on_input": true,
+  "formatter": "auto",
+  "preview_tabs": {
+    "enabled": true,
+    "enable_preview_from_file_finder": false,
+    "enable_keep_preview_on_code_navigation": true
+  },
+  // Project panel
+  "ui_font_size": 14,
+  // git
+  "git": {
+    "inline_blame": {
+      "enabled": true
+    }
+  },
+  // terminal
+  "terminal": {
+    "font_size": 11,
+    "font_family": "MonoLisa"
+  },
+  "lsp": {
+    "oxlint": {
+      "initialization_options": {
+        "settings": {
+          "configPath": null,
+          "run": "onType",
+          "disableNestedConfig": false,
+          "fixKind": "safe_fix",
+          "typeAware": true,
+          "unusedDisableDirectives": "deny"
+        }
+      }
+    },
+    "oxfmt": {
+      "initialization_options": {
+        "settings": {
+          "configPath": null,
+          "run": "onSave"
+        }
+      }
+    }
+  }
+}

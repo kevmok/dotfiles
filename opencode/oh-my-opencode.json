@@ -1,0 +1,126 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "disabled_hooks": [
+    "anthropic-context-window-limit-recovery"
+  ],
+  "claude_code": {
+    "mcp": false,
+    "commands": true,
+    "skills": true,
+    "agents": true,
+    "hooks": false,
+    "plugins": true
+  },
+  "sisyphus_agent": {
+    "disabled": false,
+    "default_builder_enabled": true,
+    "planner_enabled": true,
+    "replace_plan": true
+  },
+  "git_master": {
+    "commit_footer": false,
+    "include_co_authored_by": false
+  },
+  "google_auth": false,
+  "agents": {
+    "sisyphus": {
+      "model": "anthropic/claude-opus-4-5",
+      "variant": "max",
+			      "temperature": 0.1,
+      "prompt_append": "ALWAYS USE THE QUESTION TOOL IF YOU NEED TO ASK USER.",
+      "permission": {
+        "question": "allow"
+      }
+    },
+    "sisyphus-junior": {
+      "model": "anthropic/claude-opus-4-5"
+    },
+    "atlas": {
+      "model": "kimi-for-coding/k2p5",
+			"variant": "max",
+      "temperature": 0.1,
+      "prompt_append": "ALWAYS USE THE QUESTION TOOL IF YOU NEED TO ASK USER."
+
+    },
+    "oracle": {
+      "category": "ultrabrain",
+      "variant": "max"
+    },
+    "prometheus": {
+      "model": "anthropic/claude-opus-4-5",
+      "prompt_append": "ALWAYS USE THE QUESTION TOOL IF YOU NEED TO ASK USER.",
+      "permission": {
+        "question": "allow"
+      }
+    },
+    "librarian": {
+      "model": "anthropic/claude-haiku-4-5"
+    },
+    "explore": {
+      "model": "opencode/gpt-5-nano"
+    },
+    "frontend-ui-ux-engineer": {
+      "model": "google/antigravity-gemini-3-pro-high"
+    },
+    "document-writer": {
+      "model": "google/antigravity-gemini-3-flash"
+    },
+    "multimodal-looker": {
+      "model": "google/antigravity-gemini-3-flash"
+    },
+    "metis": {
+      "model": "anthropic/claude-opus-4-5",
+      "variant": "high",
+      "prompt_append": "ALWAYS USE THE QUESTION TOOL IF YOU NEED TO ASK USER.",
+      "permission": {
+        "question": "allow"
+      }
+    },
+    "momus": {
+      "model": "anthropic/claude-opus-4-5"
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "kimi-for-coding/k2p5",
+			"temperature": 0.7
+    },
+    "artistry": {
+      "model": "kimi-for-coding/k2p5",
+			"temperature": 0.7
+    },
+    "writing": {
+      "model": "anthropic/claude-opus-4-5"
+    },
+    "quick": {
+      "model": "kimi-for-coding/k2p5"
+    },
+    "general": {
+      "model": "anthropic/claude-opus-4-5",
+      "variant": "high",
+      "temperature": 0.3
+    },
+    "business-logic": {
+      "model": "anthropic/claude-opus-4-5",
+      "variant": "high"
+    },
+		"unspecified-low": {
+      "model": "anthropic/claude-sonnet-4-5",
+      "temperature": 0.3
+    },
+    "unspecified-high": {
+      "model": "anthropic/claude-opus-4-5",
+      "variant": "max",
+      "temperature": 0.1
+    },
+    "most-capable": {
+      "model": "anthropic/claude-opus-4-5",
+      "temperature": 0.3
+    },
+    "ultrabrain": {
+      "model": "anthropic/claude-opus-4-5",
+      "variant": "max",
+      "temperature": 0.1
+    }
+  }
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "bindings": {
+      "cmd-b": "workspace::ToggleRightDock",
+      "cmd-r": "workspace::ToggleLeftDock"
+      // "cmd-shift-b": "project"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-shift-b": "agent::ToggleFocus"
+    }
+  }
+]
