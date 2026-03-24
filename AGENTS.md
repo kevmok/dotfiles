@@ -171,26 +171,26 @@ ozsh        # edit .zshrc in Zed
 ## NEW MAC SETUP
 
 ```bash
-# 1. Install Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# 2. Install dependencies
-brew install git starship atuin pyenv bun lazygit jj ghostty
-brew install --cask zed
-
-# 3. Clone dotfiles
+# 1. Clone dotfiles
 git clone <repo-url> ~/dotfiles
+cd ~/dotfiles
 
-# 4. Run install script
-cd ~/dotfiles && ./install.sh
+# 2. Run the full developer environment setup
+./setup-dev-env.sh
 
-# 5. Fill in secrets
-cp secrets.example secrets.sh
+# 3. Fill in secrets if needed
 $EDITOR secrets.sh
 
-# 6. Reload shell
+# 4. Reload shell
 source ~/.zshrc
 ```
+
+### RERUN POLICY
+
+- `./setup-dev-env.sh` is the top-level rerunnable developer environment setup.
+- Run `./setup-dev-env.sh packages` after updating the Brewfile.
+- Run `./setup-dev-env.sh dotfiles` after changing repo-managed config files.
+- Run `./install.sh` only when you specifically want the symlink/bootstrap step.
 
 ---
 
