@@ -1,5 +1,8 @@
-# Kiro CLI pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+#  Autocomplete
+source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+# (optional — add these later if you want the full Fig vibe)
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SECRETS
@@ -88,6 +91,8 @@ alias sourceme="source $HOME/dotfiles/zsh/.zshrc"
 alias ozsh="zed $HOME/dotfiles/zsh/.zshrc"
 alias tm='task-master'
 alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # FUNCTIONS - Git Workflow
@@ -154,9 +159,6 @@ eval "$(atuin init zsh)"
 
 # Fig export (legacy)
 [[ -f "$HOME/fig-export/dotfiles/dotfile.zsh" ]] && source "$HOME/fig-export/dotfiles/dotfile.zsh"
-
-# Kiro CLI post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
 
 # bun completions
 [ -s "/Users/kevin/.bun/_bun" ] && source "/Users/kevin/.bun/_bun"
