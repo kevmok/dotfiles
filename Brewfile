@@ -1,5 +1,3 @@
-tap "homebrew/cask"
-
 # Core shell and git workflow
 brew "git"
 brew "gh"

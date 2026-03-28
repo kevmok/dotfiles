@@ -21,7 +21,7 @@ Steps:
   prereqs   Install or verify Xcode Command Line Tools and Homebrew
   packages  Install or update baseline Homebrew packages from Brewfile
   dotfiles  Run dotfiles symlink bootstrap
-  post      Finish local setup reminders (secrets, gh auth, ssh)
+  post      Install Bun/OpenCode if missing and finish local setup reminders
 
 Examples:
   ./setup-dev-env.sh           # run all steps in order
@@ -81,6 +81,7 @@ run_packages() {
         exit 1
     fi
 
+    brew update
     brew bundle --file "$BREWFILE"
 }
 
@@ -89,8 +90,31 @@ run_dotfiles() {
     "$DOTFILES_DIR/install.sh"
 }
 
+install_bun_if_missing() {
+    if has_cmd bun; then
+        info "Bun already installed"
+        return 0
+    fi
+
+    info "Installing Bun"
+    curl -fsSL https://bun.sh/install | bash
+}
+
+install_opencode_if_missing() {
+    if has_cmd opencode; then
+        info "OpenCode already installed"
+        return 0
+    fi
+
+    info "Installing OpenCode"
+    curl -fsSL https://opencode.ai/install | bash
+}
+
 run_post() {
-    info "Step 4/4: post-setup checklist"
+    info "Step 4/4: installing non-Brew tools and finishing setup"
+
+    install_bun_if_missing
+    install_opencode_if_missing
 
     if [[ -f "$DOTFILES_DIR/secrets.sh" ]]; then
         info "secrets.sh already exists"
