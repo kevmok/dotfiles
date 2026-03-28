@@ -178,10 +178,12 @@ cd ~/dotfiles
 # 2. Run the full developer environment setup
 ./setup-dev-env.sh
 
-# 3. Fill in secrets if needed
+# 3. Bun and OpenCode are installed automatically if missing
+
+# 4. Fill in secrets if needed
 $EDITOR secrets.sh
 
-# 4. Reload shell
+# 5. Reload shell
 source ~/.zshrc
 ```
 
@@ -190,6 +192,7 @@ source ~/.zshrc
 - `./setup-dev-env.sh` is the top-level rerunnable developer environment setup.
 - Run `./setup-dev-env.sh packages` after updating the Brewfile.
 - Run `./setup-dev-env.sh dotfiles` after changing repo-managed config files.
+- Run `./setup-dev-env.sh post` to rerun Bun/OpenCode installation checks and final setup tasks.
 - Run `./install.sh` only when you specifically want the symlink/bootstrap step.
 
 ---
