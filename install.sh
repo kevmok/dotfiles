@@ -44,6 +44,23 @@ link() {
     info "Linked $(basename "$src") → $dest"
 }
 
+# Copy mutable config files so app rewrites do not dirty the repo.
+copy_file() {
+    local src="$1"
+    local dest="$2"
+
+    if [[ ! -e "$src" ]]; then
+        error "Source not found: $src"
+        return 1
+    fi
+
+    mkdir -p "$(dirname "$dest")"
+
+    backup_if_needed "$dest"
+    cp "$src" "$dest"
+    info "Copied $(basename "$src") → $dest"
+}
+
 echo "╔════════════════════════════════════╗"
 echo "║     Dotfiles Installation          ║"
 echo "╚════════════════════════════════════╝"
@@ -74,6 +91,13 @@ link "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml"
 info "Setting up claude scripts..."
 mkdir -p "$HOME/.local/bin"
 link "$DOTFILES/claude/statusline.sh" "$HOME/.local/bin/claude-statusline"
+
+# ─────────────────────────────────────────
+# Codex
+# ─────────────────────────────────────────
+info "Setting up codex..."
+copy_file "$DOTFILES/codex/config.toml" "$HOME/.codex/config.toml"
+link "$DOTFILES/codex/keybindings.json" "$HOME/.codex/keybindings.json"
 
 # ─────────────────────────────────────────
 # Ghostty terminal

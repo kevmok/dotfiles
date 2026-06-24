@@ -1,3 +1,14 @@
 secrets
 secrets.sh
 .secrets
+
+# Codex local state and credentials
+codex/auth.json
+codex/**/*.sqlite*
+codex/history.jsonl
+codex/session_index.jsonl
+codex/transcription-history.jsonl
+codex/archived_sessions/
+codex/sessions/
+codex/logs/
+codex/shell_snapshots/

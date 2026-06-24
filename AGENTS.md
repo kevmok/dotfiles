@@ -15,6 +15,9 @@ Personal dotfiles for macOS. Manages shell, git, terminal, editor, and AI tool c
 dotfiles/
 ├── atuin/config.toml       # Shell history → ~/.config/atuin/config.toml
 ├── claude/statusline.sh    # Claude CLI status → ~/.local/bin/claude-statusline
+├── codex/
+│   ├── config.toml         # Codex global config baseline → ~/.codex/config.toml
+│   └── keybindings.json    # Codex keybindings → ~/.codex/keybindings.json
 ├── ghostty/config          # Terminal → ~/.config/ghostty/config
 ├── git/
 │   ├── .gitconfig          # Git config → ~/.gitconfig
@@ -98,6 +101,7 @@ dotfiles/
 | Terminal theme | `ghostty/config` |
 | Editor settings | `zed/settings.json` |
 | Editor keybinds | `zed/keymap.json` |
+| Codex config | `codex/config.toml` |
 | Shell history | `atuin/config.toml` |
 | OpenCode config | `opencode/opencode.json` |
 | Add new tool | Create dir, update `install.sh` |
@@ -116,6 +120,8 @@ dotfiles/
 | Atuin | `atuin/config.toml` | `~/.config/atuin/config.toml` |
 | Jujutsu | `jj/config.toml` | `~/.config/jj/config.toml` |
 | Zed | `zed/*.json` | `~/.config/zed/*.json` |
+| Codex | `codex/config.toml` | `~/.codex/config.toml` |
+| Codex keybindings | `codex/keybindings.json` | `~/.codex/keybindings.json` |
 | OpenCode | `opencode/*.json` | `~/.config/opencode/*.json` |
 | OpenCode Commands | `opencode/commands/*.md` | `~/.config/opencode/command/*.md` |
 | OpenCode Skills | `opencode/skills/*/` | `~/.config/opencode/skills/*/` |
@@ -162,6 +168,7 @@ ozsh        # edit .zshrc in Zed
 ## ANTI-PATTERNS
 
 - NEVER commit `secrets.sh` or files matching `secrets*` (except `.example`)
+- NEVER commit Codex auth, history, session, log, or sqlite state
 - NEVER hardcode API keys in any config file
 - NEVER edit files in `~/.config/` directly - edit in dotfiles/, run install.sh
 - AVOID monolithic configs - prefer separate files per concern

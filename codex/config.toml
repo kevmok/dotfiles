@@ -1,0 +1,167 @@
+approval_policy = "never"
+approvals_reviewer = "user"
+# default_permissions = ":workspace"
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+notify = [
+	"/Users/kevin/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient",
+	"turn-ended",
+]
+sandbox_mode = "danger-full-access"
+service_tier = "priority"
+
+[desktop]
+keepRemoteControlAwakeWhilePluggedIn = true
+git-pull-request-merge-method = "squash"
+git-show-sidebar-pr-icons = true
+git-branch-prefix = ""
+
+[features]
+collaboration_modes = true
+multi_agent = true
+search_tool = true
+js_repl = false
+
+hooks = true
+
+[marketplaces.openai-bundled]
+last_updated = "2026-06-24T03:27:59Z"
+source_type = "local"
+source = "/Users/kevin/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-06-23T07:09:54Z"
+source_type = "local"
+source = "/Users/kevin/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[marketplaces.ponytail]
+last_updated = "2026-06-24T03:11:07Z"
+last_revision = "025da371cd7539c3eb0ad859b08b3ca55e695f16"
+source_type = "git"
+source = "https://github.com/DietrichGebert/ponytail.git"
+
+[mcp_servers.hermes-tools]
+args = ["-m", "agent.transports.hermes_tools_mcp_server"]
+command = "/Users/kevin/.hermes/hermes-agent/venv/bin/python3"
+startup_timeout_sec = 30.0
+tool_timeout_sec = 600.0
+enabled = false
+
+[mcp_servers.hermes-tools.env]
+HERMES_QUIET = "1"
+HERMES_REDACT_SECRETS = "true"
+
+[mcp_servers.hermes-tools.tools.browser_navigate]
+approval_mode = "approve"
+
+[mcp_servers.railway]
+args = ["mcp"]
+command = "railway"
+
+[mcp_servers.railway.tools.whoami]
+approval_mode = "approve"
+
+[mcp_servers.railway.tools.list_domains]
+approval_mode = "approve"
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/Codex.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/kevin/.codex"
+CODEX_HOME = "/Users/kevin/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "5504c0782b5c86b7dd08314045b9843e973a230e1be8f7e2e0ba3716fc63c55e"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.616.81150"
+CODEX_CLI_PATH = "/Applications/Codex.app/Contents/Resources/codex"
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."gmail@openai-curated"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."magicpath@openai-curated"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."ponytail@ponytail"]
+enabled = true
+
+[plugins."record-and-replay@openai-bundled"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[projects."/Users/kevin/Documents/Playground"]
+trust_level = "trusted"
+
+[projects."/Users/kevin/code/github/kevmok/v1-kevmok"]
+trust_level = "trusted"
+
+[projects."/Users/kevin/code/github/simpleaura/angelya"]
+trust_level = "trusted"
+
+[projects."/Users/kevin/Documents/Codex/2026-06-03/hey-can-you-check-my-emails"]
+trust_level = "trusted"
+
+[projects."/Users/kevin/Documents/Codex/2026-06-06/i-have-a-plex-with-sonarr"]
+trust_level = "trusted"
+
+[projects."/Users/kevin/code/github/efnf/efnf"]
+trust_level = "trusted"
+
+[projects."/Users/kevin/Documents/Codex/2026-06-15/do-deep-research-web-search-etc"]
+trust_level = "trusted"
+
+[projects."/Users/kevin/Documents/Codex/2026-06-16/gmail-plugin-gmail-openai-curated-remote"]
+trust_level = "trusted"
+
+[projects."/Users/kevin/Documents/Personal Fitness"]
+trust_level = "trusted"
+
+[projects."/Users/kevin/dotfiles"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[mcp_servers.codegraph]
+command = "codegraph"
+args = ["serve", "--mcp"]
+
+[mcp_servers.codegraph.tools.codegraph_search]
+approval_mode = "approve"
+
+[mcp_servers.codegraph.tools.codegraph_node]
+approval_mode = "approve"
+
+[mcp_servers.codegraph.tools.codegraph_status]
+approval_mode = "approve"
+
+[mcp_servers.codegraph.tools.codegraph_explore]
+approval_mode = "approve"
+

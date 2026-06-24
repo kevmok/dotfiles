@@ -39,11 +39,12 @@ Run `./setup-dev-env.sh --help` to see the step-level usage.
 - `Brewfile` — lean baseline Homebrew packages
 - `setup-dev-env.sh` — top-level rerunnable machine setup
 - `install.sh` — idempotent symlink/bootstrap step
-- `zsh/`, `git/`, `starship/`, `ghostty/`, `atuin/`, `opencode/`, `zed/` — managed config directories
+- `zsh/`, `git/`, `starship/`, `ghostty/`, `atuin/`, `codex/`, `opencode/`, `zed/` — managed config directories
 
 ## Notes
 
 - `secrets.sh` is local and gitignored; fill it from `secrets.example`
 - Bun and OpenCode are installed by `./setup-dev-env.sh` if they are missing
+- Codex config is copied, not symlinked, because Codex mutates it with local state
 - OpenCode config is included in this repo, so a new machine will inherit your current OpenCode setup
 - Machine-specific shell extras should live outside the baseline flow when possible
