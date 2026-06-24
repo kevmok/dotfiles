@@ -1,0 +1,6 @@
+# Core completions + fuzzy enhancer
+zsh-users/zsh-completions
+chitoku-k/fzf-zsh-completions
+marlonrichert/zsh-autocomplete
+zsh-users/zsh-autosuggestions
+zdharma-continuum/fast-syntax-highlighting

@@ -5,10 +5,10 @@ brew "starship"
 brew "atuin"
 brew "jq"
 
-# Zsh plugins
-brew "zsh-autocomplete"
-brew "zsh-autosuggestions"
-brew "zsh-syntax-highlighting"
-
 # Optional-by-workflow terminal
 cask "ghostty"
+cask "visual-studio-code"
+
+# Container tooling
+brew "docker"
+cask "orbstack"

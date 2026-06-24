@@ -1,8 +1,18 @@
-#  Autocomplete
-source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-# (optional — add these later if you want the full Fig vibe)
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Load homebrew env
+eval "$(brew shellenv)"
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Antidote Plugin Manager
+# ══════════════════════════════════════════════════════════════════════════════
+source ~/.antidote/antidote.zsh
+antidote load ~/dotfiles/zsh/zsh_plugins.txt
+
+# ------------------------------
+# Initialize completions (required for fzf-tab)
+# ------------------------------
+autoload -U compinit
+compinit -C
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SECRETS
@@ -29,20 +39,12 @@ SAVEHIST=50000
 typeset -U path  # Remove duplicates from PATH
 
 path=(
-    "$HOME/.local/bin"
     "/opt/homebrew/bin"
-    "/opt/homebrew/opt/python@3.10/bin"
-    "/opt/homebrew/opt/postgresql@15/bin"
     "$HOME/.pyenv/bin"
     "$HOME/.bun/bin"
     "$HOME/Library/pnpm"
-    "$HOME/miniforge3/bin"
-    "$HOME/.vscode-dotnet-sdk/.dotnet"
-    "$HOME/.codeium/windsurf/bin"
     "$HOME/.opencode/bin"
-    "$HOME/.antigravity/antigravity/bin"
     "$HOME/dotfiles/claude"
-    "$(go env GOPATH 2>/dev/null)/bin"
     $path
 )
 export PATH
@@ -89,8 +91,6 @@ alias gitstashpop='git stash pop'
 # ══════════════════════════════════════════════════════════════════════════════
 alias sourceme="source $HOME/dotfiles/zsh/.zshrc"
 alias ozsh="zed $HOME/dotfiles/zsh/.zshrc"
-alias tm='task-master'
-alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 
@@ -110,21 +110,6 @@ ghard() { git reset --hard HEAD; }
 gitcleanup() { git switch main && git branch | grep -vE '^\*|main|master|dev' | xargs git branch -D; }
 
 # ══════════════════════════════════════════════════════════════════════════════
-# FUNCTIONS - Docker/AI Tools
-# ══════════════════════════════════════════════════════════════════════════════
-openhands() {
-    docker run -it --rm --pull=always \
-        -e SANDBOX_RUNTIME_CONTAINER_IMAGE=docker.all-hands.dev/all-hands-ai/runtime:0.20-nikolaik \
-        -e LOG_ALL_EVENTS=true \
-        -v /var/run/docker.sock:/var/run/docker.sock \
-        -v ~/.openhands-state:/.openhands-state \
-        -p 3000:3000 \
-        --add-host host.docker.internal:host-gateway \
-        --name openhands-app \
-        docker.all-hands.dev/all-hands-ai/openhands:0.20
-}
-
-# ══════════════════════════════════════════════════════════════════════════════
 # TOOL INITIALIZATIONS
 # ══════════════════════════════════════════════════════════════════════════════
 # Pyenv
@@ -133,32 +118,39 @@ if command -v pyenv &>/dev/null; then
     eval "$(pyenv init -)"
 fi
 
-# Conda/Mamba
-if [[ -f "$HOME/miniforge3/etc/profile.d/conda.sh" ]]; then
-    source "$HOME/miniforge3/etc/profile.d/conda.sh"
-fi
-if [[ -f "$HOME/miniforge3/etc/profile.d/mamba.sh" ]]; then
-    source "$HOME/miniforge3/etc/profile.d/mamba.sh"
-fi
-
-# Kubectl aliases
-[[ -f ~/.kubectl_aliases ]] && source ~/.kubectl_aliases
-kubectl() { echo "+ kubectl $@" >&2; command kubectl "$@"; }
-
 # Bun completions
 [[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
 
 # Jujutsu completions
 source <(COMPLETE=zsh jj 2>/dev/null) || true
 
-# Starship prompt
-eval "$(starship init zsh)"
+source <(fzf --zsh)           # fzf key bindings (Ctrl+R etc.)
+eval "$(zoxide init zsh)"     # zoxide
+eval "$(atuin init zsh)"      # Atuin history
+eval "$(starship init zsh)"   # Starship prompt
 
-# Atuin shell history
-eval "$(atuin init zsh)"
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
-# Fig export (legacy)
-[[ -f "$HOME/fig-export/dotfiles/dotfile.zsh" ]] && source "$HOME/fig-export/dotfiles/dotfile.zsh"
+# opencode
+export PATH=/Users/kevin/.opencode/bin:$PATH
 
-# bun completions
-[ -s "/Users/kevin/.bun/_bun" ] && source "/Users/kevin/.bun/_bun"
+. "$HOME/.local/bin/env"
+
+# Hermes Agent — ensure ~/.local/bin is on PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+fpath=(~/.grok/completions/zsh $fpath)
+autoload -Uz compinit && compinit -C
+# <<< grok installer <<<
+
+# >>> railway initialize >>>
+source "$HOME/.railway/env"
+# <<< railway initialize <<<
